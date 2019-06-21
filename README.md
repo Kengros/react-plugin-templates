@@ -10,13 +10,6 @@ npm install
 npm start
 ```
 
-The following are valid routes that will load the pip.
+Once the application loads, use the nav links to load the pip with components based on the specified product line.
 
-Default
-http://localhost:3000/pip/
 
-Countertops
-http://localhost:3000/pip/countertops
-
-Windows
-http://localhost:3000/pip/windows

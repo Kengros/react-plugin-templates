@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types'
 import Zone from '../zone/zone.component'; 
 
 const cache = {};
-// const productLine = 'countertops';
 
 class PipComponent extends Component{
-
-    // static propTypes = {
-    //     productLine: string.isRequired
-    // }
-
-    // static defaultProps = {
-    //     productName: 'default'
-    // }
 
     render() {
 
         var productLine = undefined;
 
         const { match: { params } } = this.props;
-
-        console.log(params.productLine);
         
         if(params.productLine === undefined) {
             productLine = 'default';

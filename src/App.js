@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
 import './App.css';
 import PipComponent from './components/pip/pip.component';
 import ConfiguratorComponent from './components/configurator/configurator.component';
@@ -9,11 +9,24 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <div className="App">
-        <Switch>          
+      <nav>
+          <ul>
+            <li>
+              <Link to="/">Default</Link>
+            </li>
+            <li>
+              <Link to="/pip/countertops">Countertops</Link>
+            </li>
+            <li>
+              <Link to="/pip/windows">Windows</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
           <Route path="/pip/:productLine" component={WaitingComponent(PipComponent)} />
           <Route path="/pip/" component={WaitingComponent(PipComponent)} />
           <Route exact path="/configurator/" component={ConfiguratorComponent} />
-          <Route exact path="/" component={ConfiguratorComponent} />
+          <Redirect from="*" to="/pip/" />
         </Switch>
       </div>
     </BrowserRouter>

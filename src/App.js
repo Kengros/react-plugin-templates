@@ -17,7 +17,7 @@ function App() {
       <nav>
           <ul>
             <li>
-              <Link to="/">Default</Link> test
+              <Link to="/">Default</Link>
             </li>
             <li>
               <Link to="/pip/countertops">Countertops</Link>

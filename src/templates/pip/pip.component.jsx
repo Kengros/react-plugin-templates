@@ -2,22 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Zone from '../../components/zone/zone.component'; 
 import { addProductLine } from '../../redux/actions/core.actions';
+import { object } from 'prop-types'
 
 class PipComponent extends Component{
 
+    static propTypes = {
+        config: object.isRequired
+    }
+
     render() {
 
-        // Reference the route params.
-        const { match: { params } } = this.props;
-
-        // Retrieve the name of the product line from the route, default if not found.
-        var productLineName = params.productLine === undefined ? 'default' : params.productLine;
-
-        // Lookup the product line configuration in redux.
-        var pageConfig = this.getPageConfig(productLineName, 'pip');
+        const { config } = this.props;
         
         // Retrieve all zone configurations that will be rendered as sections on the page.
-        var sectionConfigs = pageConfig.zones.filter(section => { return section.zone === 'section'})
+        var sectionConfigs = config.zones.filter(section => { return section.zone === 'section'})
         
         // Generate the section templates.
         var sections = sectionConfigs.map(function(section, i){
@@ -27,14 +25,14 @@ class PipComponent extends Component{
         return <div className="pip">
                     <div>
                         <div className="breadcrumb zone">
-                            <Zone config={this.getZoneConfig('breadcrumb', pageConfig)} />
+                            <Zone config={this.getZoneConfig('breadcrumb', config)} />
                         </div>
                         <div className="pip-header">
                             <div className="pip-gallery zone">
-                                <Zone config={this.getZoneConfig('gallery', pageConfig)} />
+                                <Zone config={this.getZoneConfig('gallery', config)} />
                             </div>
                             <div className="pip-details zone">
-                                <Zone config={this.getZoneConfig('details', pageConfig)} />
+                                <Zone config={this.getZoneConfig('details', config)} />
                             </div>
                         </div>
                         {sections}

@@ -7,7 +7,7 @@ import TemplateLoaderComponent from './components/template-loader/template-loade
 
 import SiteContainer from './components/site/site.component';
 
-// import ZoneComponent from './components/zone/zone.component';
+import ZoneComponent from './components/zone/zone.component';
 // import logo from './logo.svg';
 
 function App() {
@@ -17,30 +17,30 @@ function App() {
       <nav>
           <ul>
             <li>
-              <Link to="/">Default</Link>
+              {/* <Link to="/chuck/countertops/project">Chuck</Link> */}
+              <a href="/chuck/countertops/project">Chuck</a>
             </li>
             <li>
-              <Link to="/pip/countertops">Countertops</Link>
-            </li>
-            <li>
-              <Link to="/pip/windows">Windows</Link>
+              {/* <Link to="/mandi/countertops/project">Mandi</Link> */}
+              <a href="/mandi/countertops/project">Mandi</a>
             </li>
           </ul>
         </nav>
         <Switch>          
-          <Route path="/pip/:productLine" component={WaitingComponent(SiteContainer(PipComponent))} />
-          <Route path="/pip/" component={WaitingComponent(SiteContainer(PipComponent))} />
-          <Route exact path="/configurator/" component={WaitingComponent(SiteContainer(ConfiguratorComponent))} />
-          <Route path="/:site/estimatebuilder/" component={WaitingComponent(SiteContainer(TemplateLoaderComponent))} />
-          <Route path="/estimatebuilder/" component={WaitingComponent(SiteContainer(TemplateLoaderComponent))} />
-          <Redirect from="*" to="/estimatebuilder/" />
+          {/* <Route path="/pip/:productLine" component={SuspendedComponent(SiteContainer(PipComponent))} />
+          <Route path="/pip/" component={SuspendedComponent(SiteContainer(PipComponent))} />
+          <Route exact path="/configurator/" component={SuspendedComponent(SiteContainer(ConfiguratorComponent))} />
+          <Route path="/:site/estimatebuilder/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} /> */}
+          <Route path="/estimatebuilder/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} />
+          <Route path="/:site/:productLine/:page/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} />
+          <Redirect from="*" to="/chuck/countertops/project/" />
         </Switch>
       </div>
     </BrowserRouter>
   );
 }
 
-function WaitingComponent(Component) {
+function SuspendedComponent(Component) {
   return props => (
     <Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />

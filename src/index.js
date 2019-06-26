@@ -6,33 +6,33 @@ import App from './App';
 import './index.css';
 import store from './redux/store'
 
-// XXX TESTING WITH ADDED DESIGNS XXX
-import { addDesign } from './redux/actions/core.actions';
+// // XXX TESTING WITH ADDED DESIGNS XXX
+// import { addDesign } from './redux/actions/core.actions';
 
-// Log the initial state
-console.log(store.getState())
+// // Log the initial state
+// console.log(store.getState())
   
-// Every time the state changes, log it
-// Note that subscribe() returns a function for unregistering the listener
-const unsubscribe = store.subscribe(() => console.log(store.getState()))
+// // Every time the state changes, log it
+// // Note that subscribe() returns a function for unregistering the listener
+// const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
-// Dispatch some actions
-store.dispatch(addDesign({
-    id: 'xxx-xxxx-xxx',
-    productLine: 'countertops',
-    total: 10000
-}))
+// // Dispatch some actions
+// store.dispatch(addDesign({
+//     id: 'xxx-xxxx-xxx',
+//     productLine: 'countertops',
+//     total: 10000
+// }))
 
-store.dispatch(addDesign({
-    id: 'xxx-xxxx-xxx',
-    productLine: 'windows',
-    total: 5000
-}))
+// store.dispatch(addDesign({
+//     id: 'xxx-xxxx-xxx',
+//     productLine: 'windows',
+//     total: 5000
+// }))
 
-// Stop listening to state updates
-unsubscribe()
+// // Stop listening to state updates
+// unsubscribe()
 
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ReactDOM.render(
     <Provider store={store}>

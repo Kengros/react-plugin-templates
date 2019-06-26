@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Suspense, Component } from 'react';
 import { connect } from 'react-redux';
 import Zone from '../../components/zone/zone.component'; 
 import { loadSite } from '../../redux/actions/core.actions';
 
 class TemplateLoaderComponent extends Component{
+
+    isBusy = false;
 
     render() {
 
@@ -11,24 +13,29 @@ class TemplateLoaderComponent extends Component{
         const { match: { params } } = this.props;
 
         // Retrieve the name of the site from the route, default if not found.
-        var siteName = params.site === undefined ? 'default' : params.site;
+        var productLineName = params.productLine === undefined ? 'default' : params.productLine;
 
-        //console.log(siteName);
+        // Retrieve the name of the site from the route, default if not found. 
+        var templateName = params.page === undefined ? 'default' : params.page;
 
         // Lookup the site configuration in redux.
-        var templateConfig = this.templateConfig(siteName, 'project');
+        var templateConfig = this.templateConfig(templateName, productLineName);
 
         return <Zone config={templateConfig} />
     }
 
-    templateConfig(siteName, pageType) {
+    templateConfig(pageType, productLineName) {
 
-        // Lookup the site configuration in redux.
-        var site = this.props.siteTemplates;
+        // Attempt the retrieve the templates configuration from the product line config.
+        var config = this.props.siteTemplates.find(page => { return page.productLine === productLineName && page.type === pageType });
 
-        console.log(site);
+        if (config === undefined) {
 
-        return site.find(page => { return page.type === pageType });
+            // Attempt to retrieve the templates configuration from the site config.
+            config = this.props.siteTemplates.find(page => { return page.productLine === undefined && page.type === pageType });
+        }
+
+        return config;
     }
  }
 

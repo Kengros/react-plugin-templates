@@ -7,9 +7,12 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loadable": "^5.5.0",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-universal-component": "^4.0.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.3",
     "styled-components": "^4.3.1"
   },
   "scripts": {
@@ -40,6 +43,8 @@
     "@storybook/addon-links": "^5.1.8",
     "@storybook/addons": "^5.1.8",
     "@storybook/react": "^5.1.8",
-    "babel-plugin-styled-components": "^1.10.1"
+    "babel-plugin-styled-components": "^1.10.1",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8"
   }
 }

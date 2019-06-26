@@ -31,7 +31,7 @@ class ProjectComponent extends Component{
 
         return <div className="pip">
                     <div>
-                        <div>My Projects</div>
+                        <div>This is the default - My Projects</div>
                         <div className="breadcrumb zone">
                             <Zone config={this.getZoneConfig('breadcrumb', config)} />
                         </div>

@@ -1,32 +1,32 @@
 export const config = [
     {
         type: 'project',
-        plugin: 'x-mocked-libraries/mandi/components/project/project.component',
+        plugin: 'templates/project/project.component.jsx',
         zones: [
             {
                 zone: 'breadcrumb',
-                plugin: 'x-mocked-libraries/countertops/components/breadcrumb/countertops.breadcrumb',
+                plugin: 'components/breadcrumb/default.breadcrumb',
                 props: {
                     crumbs: ['Home', 'Kitchen', 'Countertops', 'Custom Countertops']
                 }
             },
             {
                 zone: 'gallery',
-                plugin: 'x-mocked-libraries/countertops/components/gallery/countertops.gallery',
+                plugin: 'components/gallery/default.gallery',
                 props: {
                     text: 'This gallery has no images?'
                 }
             },
             {
                 zone: 'details',
-                plugin: 'x-mocked-libraries/countertops/components/details/countertops.details',
+                plugin: 'components/details/default.details',
                 props: {
                     productName: 'Granite Countertop'
                 }
             },
             {
                 zone: 'section',
-                plugin: 'x-mocked-libraries/countertops/components/section/countertops.section',
+                plugin: 'components/section/default.section',
                 props: {
                     header: 'Colors'
                 }
@@ -40,7 +40,7 @@ export const config = [
             },
             {
                 zone: 'section',
-                plugin: 'x-mocked-libraries/countertops/components/section/countertops.section',
+                plugin: 'components/section/default.section',
                 props: {
                     header: 'Specifications'
                 }

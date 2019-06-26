@@ -27,11 +27,6 @@ function App() {
           </ul>
         </nav>
         <Switch>          
-          {/* <Route path="/pip/:productLine" component={SuspendedComponent(SiteContainer(PipComponent))} />
-          <Route path="/pip/" component={SuspendedComponent(SiteContainer(PipComponent))} />
-          <Route exact path="/configurator/" component={SuspendedComponent(SiteContainer(ConfiguratorComponent))} />
-          <Route path="/:site/estimatebuilder/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} /> */}
-          <Route path="/estimatebuilder/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} />
           <Route path="/:site/:productLine/:page/" component={SuspendedComponent(SiteContainer(TemplateLoaderComponent))} />
           <Redirect from="*" to="/chuck/countertops/project/" />
         </Switch>

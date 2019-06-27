@@ -3,17 +3,16 @@ import {
   GET_PROJECT,
   LIST_DESIGNS,
   GET_DESIGN,
-  ADD_DESIGN,
-  ADD_PRODUCT_LINE
+  ADD_DESIGN
 } from '../actions/core.actions'
 
 export function siteTemplates(lastState = {}, action) {
   switch (action.type) {
     case LOAD_SITE:
-    return [
+    return {
       ...lastState,
       ...action.config
-    ]
+      }
     default:
       return lastState
   }
@@ -53,21 +52,6 @@ export function designs(lastState = [], action ) {
       return [
         ...lastState,
         action.design
-      ]
-    default:
-      return lastState
-  }
-}
-
-export function productLines(lastState = [], action ) {
-  switch (action.type) {
-    case ADD_PRODUCT_LINE:
-      return [
-        ...lastState,
-        { 
-          line: action.line,
-          templates: action.config
-        }
       ]
     default:
       return lastState

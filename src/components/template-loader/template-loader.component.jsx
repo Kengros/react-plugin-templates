@@ -1,16 +1,14 @@
-import React, { Suspense, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Zone from '../../components/zone/zone.component'; 
-import { loadSite } from '../../redux/actions/core.actions';
 
 class TemplateLoaderComponent extends Component{
-
-    isBusy = false;
 
     render() {
 
         // Reference the route params.
-        const { match: { params } } = this.props;
+        const { match: { params }, zone } = this.props;
 
         // Retrieve the name of the site from the route, default if not found.
         var productLineName = params.productLine === undefined ? 'default' : params.productLine;
@@ -19,21 +17,27 @@ class TemplateLoaderComponent extends Component{
         var templateName = params.page === undefined ? 'default' : params.page;
 
         // Lookup the site configuration in redux.
-        var templateConfig = this.templateConfig(templateName, productLineName);
+        var templateConfig = this.templateConfig(templateName, productLineName, zone);
 
-        return <Zone config={templateConfig} />
+        return <Zone {...this.props} config={templateConfig} />
     }
 
-    templateConfig(pageType, productLineName) {
+    templateConfig(pageType, productLineName, zone) {
 
-        // Attempt the retrieve the templates configuration from the product line config.
-        var config = this.props.siteTemplates.find(page => { return page.productLine === productLineName && page.type === pageType });
+        // Attempt the retrieve the templates configuration by product line and page name.
+        var config = this.props.siteTemplates.templates.find(page => { return page.productLine === productLineName && page.type === pageType });
 
         if (config === undefined) {
 
-            // Attempt to retrieve the templates configuration from the site config.
-            config = this.props.siteTemplates.find(page => { return page.productLine === undefined && page.type === pageType });
+            // Attempt to retrieve the templates configuration by page name.
+            config = this.props.siteTemplates.templates.find(page => { return page.productLine === undefined && page.type === pageType });
         }
+
+        if( zone !== null) {
+
+            // Retrieve the templates configuration from the page zones.
+            config = config.zones.find(obj => { return obj.zone === zone });
+        } 
 
         return config;
     }
@@ -48,6 +52,12 @@ class TemplateLoaderComponent extends Component{
     };
  }
 
- const mapDispatchToProps = { loadSite };
+ TemplateLoaderComponent.propTypes = {
+    zone: PropTypes.string
+  };
+  
+  TemplateLoaderComponent.defaultProps = {
+    zone: null
+  };
 
- export default connect(mapStateToProps, mapDispatchToProps)(TemplateLoaderComponent);
+ export default connect(mapStateToProps, null)(TemplateLoaderComponent);

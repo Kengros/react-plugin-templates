@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Zone from '../../components/zone/zone.component'; 
-import { addProductLine } from '../../redux/actions/core.actions';
+import Zone from '../../components/zone/zone.component';
+import TemplateLoaderComponent from '../../components/template-loader/template-loader.component'
 import { object } from 'prop-types'
 
 class PipComponent extends Component{
@@ -24,90 +24,21 @@ class PipComponent extends Component{
 
         return <div className="pip">
                     <div>
+                        <div>Chuck Norris Default PIP</div>
                         <div className="breadcrumb zone">
-                            <Zone config={this.getZoneConfig('breadcrumb', config)} />
+                            <TemplateLoaderComponent {...this.props} zone='breadcrumb' />
                         </div>
                         <div className="pip-header">
                             <div className="pip-gallery zone">
-                                <Zone config={this.getZoneConfig('gallery', config)} />
+                                <TemplateLoaderComponent {...this.props} zone='gallery' />
                             </div>
                             <div className="pip-details zone">
-                                <Zone config={this.getZoneConfig('details', config)} />
+                                <TemplateLoaderComponent {...this.props} zone='details' />
                             </div>
                         </div>
                         {sections}
                     </div>
                 </div>
-    }
-
-    getPageConfig(productLineName, pageType) {
-
-        // Lookup the product line configuration in redux.
-        var productLine = this.props.productLines.find(
-            function(config) {
-                return (config.line === productLineName)
-            }
-        );
-    
-        // Verify we found the product line configuration.
-        if(productLine === undefined) {
-    
-            // The product line has not been loaded yet, import the configuration.
-            const promise = import(`../../configurations/site/default/product-lines/${productLineName}`).then(
-                result => 
-                { 
-                    // Store the product line configuration in redux.
-                    this.props.addProductLine(productLineName, result.config);
-                }
-            )
-            throw promise;
-
-        } else {
-
-            return productLine.templates.find(page => { return page.type === pageType });
-        }
-    }
-
-    /**
-     * Retrieves the specified product lines configuration from redux. If not found,
-     * the product line will be dynamically imported and stored into redux.
-     * @param {The name of the product line to retrieve} name 
-     */
-    getProductLineConfig(name) {
-
-        // Lookup the product line configuration in redux.
-        var productLine = this.props.productLines.find(function(config) {
-
-            return (config.line === name)
-        })
-    
-        // Verify we found the product line configuration.
-        if(productLine === undefined) {
-    
-            // The product line has not been loaded yet, import the configuration.
-            const promise = import(`../../configurations/${name}`).then(
-                result => 
-                { 
-                    // Store the product line configuration in redux.
-                    this.props.addProductLine(name, result.config);
-                }
-            )        
-            throw promise;
-
-        } else {
-
-            return productLine;
-        }
-    }
-
-    /**
-     * Will search the provided config for the first plugin configured for the specified zone.
-     * @param {The zone that owns the config we are looking for.} zone 
-     * @param {The configuration containing layout and zone information.} config 
-     */
-    getZoneConfig(zone, config) {
-
-        return config.zones.find(obj => { return obj.zone === zone });
     }
  }
 
@@ -120,6 +51,4 @@ class PipComponent extends Component{
     };
  }
 
- const mapDispatchToProps = { addProductLine };
-
- export default connect(mapStateToProps, mapDispatchToProps)(PipComponent);
+ export default connect(mapStateToProps, null)(PipComponent);

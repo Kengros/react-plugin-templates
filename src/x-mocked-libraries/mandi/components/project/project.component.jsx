@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types'
 import Zone from '../../../../components/zone/zone.component'; 
+import { Link } from "react-router-dom";
 
 class ProjectComponent extends Component{
 
@@ -21,31 +22,11 @@ class ProjectComponent extends Component{
 
         return <div className="pip">
                     <div>
-                        <div>Mandi Specific Projects</div>
-                        <div className="breadcrumb zone">
-                            <Zone config={this.getZoneConfig('breadcrumb', config)} />
-                        </div>
-                        <div className="pip-header">
-                            <div className="pip-gallery zone">
-                                <Zone config={this.getZoneConfig('gallery', config)} />
-                            </div>
-                            <div className="pip-details zone">
-                                <Zone config={this.getZoneConfig('details', config)} />
-                            </div>
-                        </div>
+                        <div>Mandi (Override) Projects Page</div>
                         {sections}
                     </div>
+                    <Link to="/mandi/countertops/pip">View PIP</Link>
                 </div>
-    }
-
-    /**
-     * Will search the provided config for the first plugin configured for the specified zone.
-     * @param {The zone that owns the config we are looking for.} zone 
-     * @param {The configuration containing layout and zone information.} config 
-     */
-    getZoneConfig(zone, config) {
-
-        return config.zones.find(obj => { return obj.zone === zone });
     }
 
     static propTypes = {

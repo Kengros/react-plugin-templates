@@ -18,7 +18,7 @@ class ZoneComponent extends Component{
 
             Component = universal(import(`../../${config.plugin}`));
 
-            return <Component {...config.props} config={config}/>
+            return <Component {...this.props} {...config.props} config={config}/>
         }
 
        return null;

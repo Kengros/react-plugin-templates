@@ -78,7 +78,7 @@ The templating system manages loading all pages and components based on template
 
 ### What are templates
 
-Templates are nothing more than components that have predefined zones (placeholders) for dynamically injecting content. 
+Templates are nothing more than components that have predefined zones (placeholders) for dynamically injecting content. The example below represents a template with seven zones whose content is managed by the site configuration. Each zone is identified with a name (breadcrumb, gallery, details, etc) which is referenced by the configuration to specify the plug-in that will be rendered.
 
 ![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-example.png)
 

@@ -104,8 +104,11 @@ function SuspendedComponent() {
 ```
 
 ### Breaking it down
+There are three main components that pull everything together.
 
 #### Site Container
+
+The site container component is used in the POC to simulate an async request that retrieves the site configuration. Its sole responsibility is to load the site configuration from a file based on the route and store it in redux.
 
 ```
 class SiteContainer extends Component{

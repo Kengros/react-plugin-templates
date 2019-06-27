@@ -72,7 +72,9 @@ The templating system manages loading all pages and components based on template
 
 <i>Plug-in</i> - The path to the component that will be rendered.
 
-<i>Zones</i> - Additional configurations that specify components that are used for various zones within the page.
+<i>Zones</i> - Additional configurations that specify components that are rendered for various zones within the page.
 
+<i>Props</i> - Props are additional settings that control features of a given component.
 
+### What are templates
 ![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-example.png)

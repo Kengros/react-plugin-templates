@@ -82,4 +82,23 @@ Templates are nothing more than components that have predefined zones (placehold
 
 ![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-example.png)
 
+### Routes
 
+In this POC, all routes are managed by a single dynamic route. The route provides values for site, productline and page which are all used by the templating system to identify which components will be rendered.
+
+```
+<Switch>
+  <Route exact path="/:site/:productLine/:page/" component={SuspendedComponent()} />
+  <Redirect from="*" to="/chuck/countertops/project/" />
+</Switch>
+
+...
+
+function SuspendedComponent() {
+  return props => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SiteContainer {...props} />
+    </Suspense>
+  );
+}
+```

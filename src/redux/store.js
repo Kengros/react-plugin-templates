@@ -3,9 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import Root from './reducers';
 
 const INITIAL_STATE = {
-    siteTemplates: [],
+    siteTemplates: {},
     project: {},
-    productLines: [],
     designs: [],
 };
 

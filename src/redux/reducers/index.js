@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { siteTemplates, project, designs, productLines } from './core.reducer';
+import { siteTemplates, project, designs } from './core.reducer';
 
 const Root = combineReducers({
   siteTemplates,
   project,
-  productLines,
   designs
 })
   

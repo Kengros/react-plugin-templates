@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Zone from '../../components/zone/zone.component'; 
-import { addProductLine } from '../../redux/actions/core.actions';
 
 class DesignComponent extends Component{
 
@@ -24,6 +23,6 @@ class DesignComponent extends Component{
     };
  }
 
- const mapDispatchToProps = { addProductLine };
+//  const mapDispatchToProps = { addProductLine };
 
- export default connect(mapStateToProps, mapDispatchToProps)(DesignComponent);
+ export default connect(mapStateToProps, null)(DesignComponent);

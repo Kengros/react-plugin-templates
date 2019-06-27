@@ -102,3 +102,121 @@ function SuspendedComponent() {
   );
 }
 ```
+
+### Breaking it down
+
+#### Site Container
+
+```
+class SiteContainer extends Component{
+
+    render() {
+
+        // Reference the route params.
+        const { match: { params } } = this.props;
+
+        // Retrieve the name of the site from the route, default if not found.
+        var siteName = params.site === undefined ? 'default' : params.site;
+
+        this.loadSiteConfig(siteName);
+    
+        return  <TemplateLoaderComponent {...this.props} />
+    }
+
+    loadSiteConfig(siteName) {
+
+        // Lookup the site configuration in redux.
+        var site = store.getState().siteTemplates;
+
+        // Verify we found the site configuration.
+        if(site === undefined || site.name !== siteName) {
+    
+            // The site has not been loaded yet, import the configuration.
+            const promise = import(`../../configurations/site/${siteName}.js`).then(
+                result => 
+                { 
+                    // Store the site configuration in redux.
+                    store.dispatch(loadSite(result.config));
+                }
+            );
+
+            throw promise;
+        }
+    }
+ }
+
+```
+
+#### Template Loader
+
+```
+class TemplateLoaderComponent extends Component{
+
+    render() {
+
+        // Reference the route params.
+        const { match: { params }, zone } = this.props;
+
+        // Retrieve the name of the site from the route, default if not found.
+        var productLineName = params.productLine === undefined ? 'default' : params.productLine;
+
+        // Retrieve the name of the site from the route, default if not found. 
+        var templateName = params.page === undefined ? 'default' : params.page;
+
+        // Lookup the site configuration in redux.
+        var templateConfig = this.templateConfig(templateName, productLineName, zone);
+
+        return <Zone {...this.props} config={templateConfig} />
+    }
+
+    templateConfig(pageType, productLineName, zone) {
+
+        // Attempt the retrieve the templates configuration by product line and page name.
+        var config = this.props.siteTemplates.templates.find(page => { return page.productLine === productLineName && page.type === pageType });
+
+        if (config === undefined) {
+
+            // Attempt to retrieve the templates configuration by page name.
+            config = this.props.siteTemplates.templates.find(page => { return page.productLine === undefined && page.type === pageType });
+        }
+
+        if( zone !== null) {
+
+            // Retrieve the templates configuration from the page zones.
+            config = config.zones.find(obj => { return obj.zone === zone });
+        } 
+
+        return config;
+    }
+ }
+
+```
+
+#### Zone
+
+```
+import universal from 'react-universal-component'
+
+class ZoneComponent extends Component{
+
+    static propTypes = {
+        config: object.isRequired
+    }
+
+    render() {
+    
+        let Component = null;
+
+        const { config } = this.props;
+
+        if(config != null) {
+
+            Component = universal(import(`../../${config.plugin}`));
+
+            return <Component {...this.props} {...config.props} config={config}/>
+        }
+
+       return null;
+    }
+ }
+```

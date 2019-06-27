@@ -152,6 +152,8 @@ class SiteContainer extends Component{
 
 #### Template Loader
 
+The template loader handles retrieveing the template configuration from redux based on the specified route and optionally zone. Once the template has been identified, the loader passes the configuration into a zone component and returns it.
+
 ```
 class TemplateLoaderComponent extends Component{
 
@@ -160,13 +162,13 @@ class TemplateLoaderComponent extends Component{
         // Reference the route params.
         const { match: { params }, zone } = this.props;
 
-        // Retrieve the name of the site from the route, default if not found.
+        // Retrieve the name of the product line from the route, default if not found.
         var productLineName = params.productLine === undefined ? 'default' : params.productLine;
 
-        // Retrieve the name of the site from the route, default if not found. 
+        // Retrieve the name of the page from the route, default if not found. 
         var templateName = params.page === undefined ? 'default' : params.page;
 
-        // Lookup the site configuration in redux.
+        // Lookup the template configuration in redux.
         var templateConfig = this.templateConfig(templateName, productLineName, zone);
 
         return <Zone {...this.props} config={templateConfig} />
@@ -196,6 +198,8 @@ class TemplateLoaderComponent extends Component{
 ```
 
 #### Zone
+
+The zone component dynamically imports a component via the supplied plugin path and passes optional props into it. 
 
 ```
 import universal from 'react-universal-component'

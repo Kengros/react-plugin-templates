@@ -16,7 +16,27 @@ Once the application loads, use the nav links to load the pip with components ba
 ### How it works
 The templating system manages loading all pages and components based on template configurations defined at the site level. The site configuration contains information on how and where all plug-in components will be rendered based on route taken by the user.
 
-example: configurations/site/mandi.js
+
+<i>example: snippet of a plug-in configuration</i>
+```
+{
+    productLine: 'countertops',
+    type: 'pcp',
+    plugin: 'templates/pcp/pcp.component.jsx',
+    zones: []
+}
+```
+<b>Setting Definitions</b>
+
+<i>Product Line</i> - Identifies the product line the configuration was created for.
+
+<i>Type</i> - This setting identifies the type of page the injected component will represent.
+
+<i>Plug-in</i> - The path to the component that will be rendered.
+
+<i>Zones</i> - Additional configurations that specify components that are used for various zones within the page.
+
+<i>example: configurations/site/mandi.js</i>
 ```
 {
   name: 'mandi',

@@ -84,3 +84,4 @@ The templating system manages loading all pages and components based on template
   ]
 }
 ```
+![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-example.png)

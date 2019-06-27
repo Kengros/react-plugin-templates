@@ -77,4 +77,9 @@ The templating system manages loading all pages and components based on template
 <i>Props</i> - Props are additional settings that control features of a given component.
 
 ### What are templates
+
+Templates are nothing more than components that have predefined zones (placeholders) for dynamically injecting content. 
+
 ![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-example.png)
+
+

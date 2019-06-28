@@ -10,13 +10,13 @@ class TemplateLoaderComponent extends Component{
         // Reference the route params.
         const { match: { params }, zone } = this.props;
 
-        // Retrieve the name of the site from the route, default if not found.
+        // Retrieve the name of the product line from the route, default if not found.
         var productLineName = params.productLine === undefined ? 'default' : params.productLine;
 
-        // Retrieve the name of the site from the route, default if not found. 
+        // Retrieve the name of the page from the route, default if not found. 
         var templateName = params.page === undefined ? 'default' : params.page;
 
-        // Lookup the site configuration in redux.
+        // Lookup the template configuration in redux.
         var templateConfig = this.templateConfig(templateName, productLineName, zone);
 
         return <Zone {...this.props} config={templateConfig} />

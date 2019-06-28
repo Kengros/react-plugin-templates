@@ -33,7 +33,8 @@ class SiteContainer extends Component{
                     // Store the site configuration in redux.
                     store.dispatch(loadSite(result.config));
                 }
-            );
+            )
+            // .catch(console.log(e));
 
             throw promise;
         }

@@ -104,11 +104,13 @@ function SuspendedComponent() {
 ```
 
 ### Breaking it down
-There are three main components that pull everything together.
+There are three main components that pull everything together. The diagram below illustrates the flow starting with loading the requested route and dynamically injecting the configured components at runtime.
+
+![alt text](https://raw.githubusercontent.com/eschall/react-plugin-templates/master/documentation/images/template-loader-flow.png)
 
 #### Site Container
 
-The site container component is used in the POC to simulate an async request that retrieves the site configuration. Its sole responsibility is to load the site configuration from a file based on the route and store it in redux.
+The site container component is used in the POC to simulate an async request that retrieves the site configuration. Its sole responsibility is to load the site configuration from a file based on the route and store it in redux. This would potentially be replaced with an API call in the future to retrieve the configuration from the backend.
 
 ```
 class SiteContainer extends Component{
